@@ -14,7 +14,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter cooper,$(TARGET_DEVICE)),)
+ifneq ($(filter galaxyr,$(TARGET_DEVICE)),)
 
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := sec_touchscreen.kcm
