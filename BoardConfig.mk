@@ -26,25 +26,25 @@ USE_CAMERA_STUB := false
 
 TARGET_NO_BOOTLOADER := true
 
-TARGET_PREBUILT_RECOVERY_KERNEL := device/samsung/galaxyr/recovery_kernel
-TARGET_RECOVERY_INITRC := device/samsung/galaxyr/recovery.rc
+#TARGET_PREBUILT_RECOVERY_KERNEL := device/samsung/galaxyr/recovery_kernel
+#TARGET_RECOVERY_INITRC := device/samsung/galaxyr/recovery.rc
 
 #TARGET_BOARD_PLATFORM := msm7k
-TARGET_ARCH_VARIANT := armv7-a
-TARGET_CPU_ABI := armeabi
+#TARGET_ARCH_VARIANT := armv7-a
+#TARGET_CPU_ABI := armeabi
 #TARGET_CPU_ABI2 := armeabi
 
 #TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 #TARGET_BOOTLOADER_BOARD_NAME := galaxyr
 
 # assert
-TARGET_OTA_ASSERT_DEVICE := cooper,GT-S5830
+#TARGET_OTA_ASSERT_DEVICE := galaxyr,GT-I9103
 
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
+#BOARD_HAVE_BLUETOOTH := true
+#BOARD_HAVE_BLUETOOTH_BCM := true
 
-BOARD_HAVE_FM_RADIO := true
-BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
+#BOARD_HAVE_FM_RADIO := true
+#BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 #BOARD_FM_DEVICE := bcm4325
 
 # Wifi related defines
@@ -52,13 +52,13 @@ BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 #WIFI_DRIVER_MODULE_PATH     := /system/wifi/ar6000.ko
 #WIFI_DRIVER_MODULE_NAME     := ar6000
 
-WITH_JIT := true
-ENABLE_JSC_JIT := true
+#WITH_JIT := true
+#ENABLE_JSC_JIT := true
 
-TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
+#TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
 #TARGET_USES_16BPPSURFACE_FOR_OPAQUE := true 
 
-JS_ENGINE := v8
+#JS_ENGINE := v8
 
 # OpenGL drivers config file path
 #BOARD_EGL_CFG := device/samsung/galaxyr/egl.cfg
@@ -66,7 +66,7 @@ JS_ENGINE := v8
 # No fallback font by default (space savings)
 #NO_FALLBACK_FONT:=true
 
-BOARD_GPS_LIBRARIES := libloc_api
+#BOARD_GPS_LIBRARIES := libloc_api
 
 #BOARD_USES_QCOM_HARDWARE := true
 #BOARD_USES_QCOM_LIBS := true
@@ -74,13 +74,13 @@ BOARD_GPS_LIBRARIES := libloc_api
 #BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := cooper
 #BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
 
-BOARD_MOBILEDATA_INTERFACE_NAME = "pdp0"
+#BOARD_MOBILEDATA_INTERFACE_NAME = "pdp0"
 
 #BOARD_KERNEL_BASE := 0x13600000
 #BOARD_KERNEL_PAGESIZE := 4096
 #TARGET_PROVIDES_LIBAUDIO := true
 
-BOARD_USE_USB_MASS_STORAGE_SWITCH := true
+#BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 
 #BOARD_UMS_LUNFILE := "/sys/devices/platform/usb_mass_storage/lun0/file"
 
