@@ -109,5 +109,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 
 #BOARD_RECOVERY_HANDLES_MOUNT := true
 
+# Don't touch this because the R does not have different UI for Recovery
+
 #BOARD_CUSTOM_RECOVERY_KEYMAPPING:= ../../device/samsung/cooper/recovery/recovery_ui.c
 #BOARD_CUSTOM_GRAPHICS           := ../../../device/samsung/cooper/recovery/graphics.c
