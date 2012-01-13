@@ -1,0 +1,472 @@
+on early-init
+    mount debugfs debugfs /sys/kernel/debug
+    write /sys/class/firmware/timeout 5
+
+    mkdir /efs 0771 system system
+
+    write /sys/block/mmcblk0/queue/iosched/slice_idle 0
+
+# ko files for bthid
+    insmod /lib/modules/bthid.ko
+
+on fs
+    # SEC_DMCRYPT move mounting efs before mounting data and apply_disk_policy
+    # mount EFS partition    
+    exec check_filesystem /dev/block/mmcblk0p1 ext4
+    mount ext4 /dev/block/mmcblk0p1 /efs nosuid nodev noatime wait
+    chown radio system /efs
+    chmod 0775 /efs
+    chmod 0775 /efs/bluetooth
+
+    # SEC_DMCRYPT efs or cache or lfs partition required
+    exec apply_sec_devenc_init
+
+    mount ext4 /dev/block/mmcblk0p2 /system wait ro
+
+    # SEC_DMCRYPT mount with crypt option    
+    exec check_filesystem /dev/block/mmcblk0p6 ext4
+    mount ext4 /dev/block/mmcblk0p6 /data nosuid nodev noatime wait crypt discard,noauto_da_alloc    
+    mount ext4 /dev/block/mmcblk0p3 /cache nosuid nodev noatime wait
+    
+
+    # mount EFS partition
+    #mount ext3 /dev/block/mmcblk0p1 /efs nosuid nodev
+    #chown system radio /efs
+    #chmod 0775 /efs
+    #chmod 0775 /efs/bluetooth
+
+    #add booting sound property 
+    setprop audioflinger.bootsnd 1
+    
+on boot
+    mkdir /data/misc/wifi 0770 wifi system
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcp
+    mkdir /data/wifi 0770 wifi wifi
+
+# create data/gps for GPS demon
+    # UART device
+    chmod 0660 /dev/ttyHS0
+    chown root system /dev/ttyHS0
+    
+    mkdir /data/gps 0771 system system
+    chown system system /data/gps
+    
+    chown root system /sys/class/sec/gps/GPS_PWR_EN/value
+    chmod 0664 /sys/class/sec/gps/GPS_PWR_EN/value
+    
+    chown root system /sys/class/sec/gps/GPS_nRST/value
+    chmod 0664 /sys/class/sec/gps/GPS_nRST/value
+
+    # EMC DVFS on/off
+    chown radio system /sys/module/tegra2_emc/parameters/emc_enable
+    chmod 0660 /sys/module/tegra2_emc/parameters/emc_enable
+
+# sensor
+    chown root system /dev/mpu
+    chown root system /dev/mpuirq
+    chown root system /dev/accelirq
+    chown root system /dev/timerirq
+    chown root system /sys/class/proximity/proximity/proximity_avg
+
+    chmod 0660 /dev/mpu
+    chmod 0660 /dev/mpuirq
+    chmod 0660 /dev/accelirq
+    chmod 0660 /dev/timerirq
+
+# bluetooth
+    # UART device
+    chmod 0660 /dev/ttyHS2
+    chown bluetooth bluetooth /dev/ttyHS2
+
+    # power up/down interface
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chmod 0660 /sys/class/rfkill/rfkill0/type
+    chmod 0660 /sys/class/rfkill/rfkill1/state
+    chmod 0660 /sys/class/rfkill/rfkill1/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill1/type
+    chmod 6777 /system/bin/bcm_dut
+
+    # bluetooth MAC address programming
+    setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
+    chown bluetooth bluetooth ro.bt.bdaddr_path
+
+# UART/USB path switching
+    chown system radio /sys/devices/platform/i2c-gpio.11/i2c-11/11-0025/uartsel
+    chown system radio /sys/devices/platform/i2c-gpio.11/i2c-11/11-0025/usbsel
+
+# backlight
+    chown system system /sys/class/backlight/pwm-backlight/brightness
+
+# LCD/CMC623
+    chmod 664 /sys/devices/virtual/mdnieset/cmc623-ext/set_bypass
+    chmod 664 /sys/devices/virtual/mdnieset/cmc623-ext/show_regs
+    chmod 664 /sys/devices/virtual/mdnieset/cmc623-ext/read_reg
+    chmod 664 /sys/devices/virtual/mdnieset/cmc623-ext/set_reg
+    
+    chmod 664 /sys/devices/virtual/mdnieset/mdnie/color_saturation
+    chmod 664 /sys/devices/virtual/mdnieset/mdnie/color_black
+    chmod 664 /sys/devices/virtual/mdnieset/mdnie/color_white
+    chmod 664 /sys/devices/virtual/mdnieset/mdnie/lightsensor_file_state
+    chmod 664 /sys/devices/virtual/mdnieset/mdnie/cabcset_file_cmd
+    chmod 664 /sys/devices/virtual/mdnieset/mdnie/mdnieset_outdoor_file_cmd
+    chmod 664 /sys/devices/virtual/mdnieset/mdnie/mdnieset_user_select_file_cmd
+    chmod 664 /sys/devices/virtual/mdnieset/mdnie/mdnieset_ui_file_cmd
+
+    chmod 664 /sys/devices/virtual/sec/sec_tune_lcd/lcdtype
+    chmod 664 /sys/devices/virtual/sec/sec_tune_lcd/lcd_onoff
+
+    chmod 664 /sys/devices/virtual/sec/sec_tune_cmc623/bypassonoff
+    chmod 664 /sys/devices/virtual/sec/sec_tune_cmc623/cabconoff
+
+    chown system radio /sys/devices/virtual/mdnieset/cmc623-ext/set_bypass
+    chown system radio /sys/devices/virtual/mdnieset/cmc623-ext/show_regs
+    chown system radio /sys/devices/virtual/mdnieset/cmc623-ext/read_reg
+    chown system radio /sys/devices/virtual/mdnieset/cmc623-ext/set_reg
+    
+    chown system radio /sys/devices/virtual/mdnieset/mdnie/color_saturation
+    chown system radio /sys/devices/virtual/mdnieset/mdnie/color_black
+    chown system radio /sys/devices/virtual/mdnieset/mdnie/color_white
+    chown system radio /sys/devices/virtual/mdnieset/mdnie/lightsensor_file_state
+    chown system radio /sys/devices/virtual/mdnieset/mdnie/cabcset_file_cmd
+    chown system radio /sys/devices/virtual/mdnieset/mdnie/mdnieset_outdoor_file_cmd
+    chown system radio /sys/devices/virtual/mdnieset/mdnie/mdnieset_user_select_file_cmd
+    chown system radio /sys/devices/virtual/mdnieset/mdnie/mdnieset_ui_file_cmd
+
+    chown system radio /sys/devices/virtual/sec/sec_tune_lcd/lcdtype
+    chown system radio /sys/devices/virtual/sec/sec_tune_lcd/lcd_onoff
+
+    chown system radio /sys/devices/virtual/sec/sec_tune_cmc623/bypassonoff
+    chown system radio /sys/devices/virtual/sec/sec_tune_cmc623/cabconoff
+
+# Sensor
+    chmod 666 /dev/nvhost-ctrl
+    chmod 666 /dev/nvhost-display
+    chmod 666 /dev/nvhost-dsi
+    chmod 666 /dev/nvhost-gr2d
+    chmod 666 /dev/nvhost-gr3d
+    chmod 666 /dev/nvhost-isp
+    chmod 666 /dev/nvhost-mpe
+    chmod 666 /dev/nvhost-vi
+
+# Power management settings
+#    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 216000
+#    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1000000
+#    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+#    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 216000
+#    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1000000
+#    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
+#    write /sys/devices/system/cpu/cpufreq/interactive/go_maxspeed_load 80
+    
+# permissions for MTP device node_temporary permission_will be changed 0660
+chmod 0666 /dev/usb_mtp_gadget
+
+# permissions for USB Accessory device(ADK) node_temporary permission_will be changed 0660
+	chown root usb /dev/usb_accessory
+	chmod 0660 /dev/usb_accessory
+	
+	chown root system /sys/devices/virtual/usb_composite/accessory/enable
+	chmod 0664 /sys/devices/virtual/usb_composite/accessory/enable
+
+# ko files for FM Radio
+    insmod /lib/modules/Si4709_driver.ko
+
+# emmc checksum
+    chown system radio /sys/class/sec/sec_misc/emmc_checksum_done
+    chown system radio /sys/class/sec/sec_misc/emmc_checksum_pass
+
+#SISO-PLAYREADY-CHANGES
+#DRM directory creation
+    mkdir /system/etc/security/.drm 0775
+    chown system media /system/etc/security/.drm
+    chmod 0775 /system/etc/security/.drm
+#Added for CLMA certs for Manufacturing app in OMADRM Version2
+    mkdir /data/mrd 0744
+    mkdir /data/mrd/almc 0744
+    mkdir /data/mrd/almc/adabip 0744
+    chown radio radio /data/mrd/almc/adabip/
+    chmod 0744 /data/mrd/almc/adabip/
+	# Added for Playready DRM Support
+    mkdir /data/data/.drm 0775
+	chown media system /data/data/.drm
+    chmod 0775 /data/data/.drm
+	mkdir /data/data/.drm/.playready 0775
+	chown media system /data/data/.drm/.playready
+    chmod 0775 /data/data/.drm/.playready
+# Added for DIVX DRM
+    mkdir /efs/.files 0775
+    mkdir /efs/.files/.dx1 0775
+    mkdir /efs/.files/.dm33 0775
+    mkdir /efs/.files/.mp301 0775
+    chown media system /efs/.files/.dx1
+    chown media system /efs/.files/.dm33
+    chown media system /efs/.files/.mp301
+    chmod 0775 /efs/.files/.dx1
+    chmod 0775 /efs/.files/.dm33
+    chmod 0775 /efs/.files/.mp301
+
+#SISO-PLAYREADY-CHANGES
+
+
+# Permissions for Camera
+    chown system system /sys/class/sec/sec_s5k4ecgx/cameraflash
+    chown system system /sys/class/sec/sec_s5k4ecgx/camtype
+    chown system system /sys/class/sec/sec_s5k6aafx/camtype
+
+# Vibrator
+    chmod 0666 /dev/tspdrv
+
+# OTG Test
+    chown system radio /sys/class/host_notify/usb_otg/booster
+    chmod 0664 /sys/class/host_notify/usb_otg/booster
+
+# disable_vbus
+	chown system radio /sys/devices/platform/android_usb/disable_vbus		
+    chmod 0664 /sys/devices/platform/android_usb/disable_vbus		
+
+# battery
+    chown system radio /sys/class/power_supply/battery/batt_reset_soc
+
+# UsbMenuSel ownership change - for setting.	
+	chown system radio /sys/devices/platform/android_usb/UsbMenuSel	
+
+# Debug_Level
+    chown system radio /sys/devices/platform/sec_debug_level
+    chmod 664 /sys/devices/platform/sec_debug_level
+    chown system radio /sys/devices/virtual/misc/level/control
+    chmod 664 /sys/devices/virtual/misc/level/control
+
+service playsound /system/bin/playsound
+    user media
+    group system
+    disabled
+    oneshot
+    
+service immvibed /system/bin/immvibed_n1
+    user shell
+    group shell
+    oneshot
+
+# +++++++++++++++++++++++++++++++++++++++++++
+# for datarouter
+    chown system system /dev/ttyGS0
+    chown system system /dev/dun
+# +++++++++++++++++++++++++++++++++++++++++++
+
+service wpa_supplicant /system/bin/wpa_supplicant \
+    -Dwext -ieth0 -c/data/wifi/bcm_supp.conf
+#   we will start as root and wpa_supplicant will switch to user wifi
+#   after setting up the capabilities required for WEXT
+#   user wifi
+#   group wifi inet keystore
+    class main
+    socket wpa_eth0 dgram 0660 wifi wifi
+    disabled
+    oneshot
+
+#for WiFi MFG(TestMode)
+service mfgloader /system/bin/mfgloader
+    disabled
+    oneshot
+
+service wlandutservice /system/bin/wlandutservice
+    user system
+    group wifi net_raw net_admin system inet
+    disabled
+    oneshot
+
+service macloader /system/bin/macloader
+    oneshot
+# end of wifi
+
+
+service dhcpcd /system/bin/dhcpcd
+    disabled
+    oneshot
+
+service iprenew_eth0 /system/bin/dhcpcd -n
+    disabled
+    oneshot
+
+# bugreport is triggered by the VOLUME-DOWN and VOLUME-UP keys
+service bugreport /system/bin/dumpstate -d -v -o /data/storage/bugreports/bugreport
+    disabled
+    oneshot
+    keycodes 115 114
+
+
+service audiotunemode /system/bin/audiotunemode
+    oneshot
+
+# Bluetooth
+service btld /system/bin/logwrapper /system/bin/btld -hb 3000000 -hp /dev/ttyHS2 -lpm 1
+    user root
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+# start btld if soft_onoff is enabled
+on property:service.brcm.bt.soft_onoff=1
+    start btld
+
+# stop btld if soft_onoff is disabled
+on property:service.brcm.bt.soft_onoff=0
+    stop btld
+
+
+service mtpd /system/bin/mtpd
+	socket mtpd stream 600 system system
+	user vpn
+	group vpn net_admin net_raw
+	disabled
+	oneshot
+  
+service ril-daemon /system/bin/rild
+    socket rild stream 660 root radio
+    socket rild-debug stream 660 radio system
+    user root
+    group radio cache inet misc audio sdcard_rw log
+    
+service DR-deamon /system/bin/drexe
+    user root
+    group system radio inet net_raw  
+
+service mobex-daemon /system/bin/npsmobex
+    user system
+    group system inet         
+
+# Samsung USB Mode : system properties are linked with sysfs
+# write /sys/class/sec/switch/UsbMenuSel 0
+on property:persist.service.usb.setting=0
+	write /sys/devices/platform/android_usb/UsbMenuSel 0
+on property:persist.service.usb.setting=1
+	write /sys/devices/platform/android_usb/UsbMenuSel 1
+on property:persist.service.usb.setting=2
+	write /sys/devices/platform/android_usb/UsbMenuSel 2
+on property:persist.service.usb.setting=3
+	write /sys/devices/platform/android_usb/UsbMenuSel 3
+on property:persist.service.usb.setting=4
+	write /sys/devices/platform/android_usb/UsbMenuSel 4
+	
+# Power management settings
+on property:sys.boot_completed=1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 216000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1000000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 216000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1000000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpufreq/interactive/go_maxspeed_load 80
+	
+# adbd is controlled by the persist.service.adb.enable system property
+service adbd /sbin/adbd
+    disabled
+
+# adbd on at boot in emulator
+on property:ro.kernel.qemu=1
+    start adbd
+
+on property:persist.service.adb.enable=1
+    start adbd
+
+on property:persist.service.adb.enable=0
+    stop adbd
+
+
+#HCI_ENABLE_BT_DEV_UNDER_TEST_MODE
+service bt_dut_cmd /system/bin/bcm_dut
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+on property:encryption.bootmode=remount
+
+    stop mobex-daemon
+    stop DR-deamon  
+    stop media
+    stop immvibed
+    stop zygote
+    # do not add here, "on property" tag area
+    
+	# verfiy filesystem (UMS)
+	#exec apply_system_policy /dev/block/mmcblk0p4 vfat -r 1980
+
+	mount ext4 /dev/block/mmcblk0p6 /data nosuid nodev noatime wait usedm discard,noauto_da_alloc
+    # do not add here, "on property" tag area
+    chown system system /data
+    chmod 0771 /data
+    # do not add here, "on property" tag area
+    # We chown/chmod /data again so because mount is run as root + defaults
+    chown system system /data
+    chmod 0771 /data
+    # do not add here, "on property" tag area
+    # Create dump dir and collect dumps.
+    # Do this before we mount cache so eventually we can use cache for
+    # storing dumps on platforms which do not have a dedicated dump partition.
+    # do not add here, "on property" tag area
+    mkdir /data/dontpanic
+    chown root log /data/dontpanic
+    chmod 0750 /data/dontpanic
+    # do not add here, "on property" tag area
+    # Collect apanic data, free resources and re-arm trigger
+    copy /proc/apanic_console /data/dontpanic/apanic_console
+    chown root log /data/dontpanic/apanic_console
+    chmod 0640 /data/dontpanic/apanic_console
+    # do not add here, "on property" tag area
+    copy /proc/apanic_threads /data/dontpanic/apanic_threads
+    chown root log /data/dontpanic/apanic_threads
+    chmod 0640 /data/dontpanic/apanic_threads
+    # do not add here, "on property" tag area
+    write /proc/apanic_console 1
+    # do not add here, "on property" tag area
+# create basic filesystem structure
+    mkdir /data/misc 01771 system misc
+    mkdir /data/misc/bluetoothd 0770 bluetooth bluetooth
+    mkdir /data/misc/bluetooth 0770 system system
+    mkdir /data/misc/keystore 0700 keystore keystore
+    mkdir /data/misc/vpn 0770 system system
+    mkdir /data/misc/systemkeys 0700 system system
+    mkdir /data/misc/vpn/profiles 0770 system system
+    # give system access to wpa_supplicant.conf for backup and restore
+    mkdir /data/misc/wifi 0770 wifi system
+    chmod 0770 /data/misc/wifi
+    chmod 0660 /data/misc/wifi/wpa_supplicant.conf
+    mkdir /data/local 0771 shell shell
+    mkdir /data/local/tmp 0771 shell shell
+    mkdir /data/data 0771 system system
+    mkdir /data/app-private 0771 system system
+    mkdir /data/app 0771 system system
+    mkdir /data/property 0700 root root
+    # do not add here, "on property" tag area
+    # create log system
+    mkdir /data/log 0777 system system
+    # do not add here, "on property" tag area
+    chmod 0777 /data/log
+    chmod 0777 /data/anr
+    # do not add here, "on property" tag area
+    # create dalvik-cache and double-check the perms
+    mkdir /data/dalvik-cache 0771 system system
+    chown system system /data/dalvik-cache
+    chmod 0771 /data/dalvik-cache
+    # do not add here, "on property" tag area
+    # create the lost+found directories, so as to enforce our permissions
+    mkdir /data/lost+found 0770
+    # do not add here, "on property" tag area
+    # double check the perms, in case lost+found already exists, and set owner
+    chown root root /data/lost+found
+    chmod 0770 /data/lost+found
+    # do not add here, "on property" tag area
+    
+# b2b_lab_securitypart_2011.7.10 'reload properties for ODE 
+    exec reload_data_partition_properties
+
+    
+    start zygote
+    start immvibed
+    start media
+    start DR-deamon    
+    start mobex-daemon
