@@ -1,4 +1,4 @@
-ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),cooper)
+ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),n1)
 
 
 LOCAL_PATH:= $(call my-dir)
@@ -32,7 +32,7 @@ endif
 
 include $(BUILD_SHARED_LIBRARY)
 
-LOCAL_PATH := hardware/msm7k/libaudio
+LOCAL_PATH := hardware/msm7k/libaudio-qsd8k
 
 include $(CLEAR_VARS)
 
