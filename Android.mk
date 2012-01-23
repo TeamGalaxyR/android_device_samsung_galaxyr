@@ -20,3 +20,4 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := sec_touchscreen.kcm
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_KEY_CHAR_MAP)
+endif
