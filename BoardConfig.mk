@@ -5,6 +5,8 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_BOARD_PLATFORM_GPU := tegra
 TARGET_BOOTLOADER_BOARD_NAME := n1
 
+TARGET_NO_BOOTLOADER := true
+
 BOARD_HAVE_BLUETOOTH := true
 
 # OpenGL drivers config file path
