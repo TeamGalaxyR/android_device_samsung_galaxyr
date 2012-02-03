@@ -13,5 +13,7 @@
 # limitations under the License.
 
 LOCAL_PATH := $(call my-dir)
+include $(LOCAL_PATH)/proprietary/proprietary.mk
 
+LOCAL_PATH := $(call my-dir)
 include $(call all-makefiles-under,$(LOCAL_PATH))
