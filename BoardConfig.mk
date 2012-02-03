@@ -18,7 +18,7 @@ BOARD_EGL_CFG := device/samsung/galaxyr/egl.cfg
 # BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x0d020000
 # BOARD_FLASH_BLOCK_SIZE := 131072
 
-# I warn you, these are random file sizes that are divisible by 4096 to bypass the errors thet AOSP threw
+# I warn you, these are random file sizes that are divisible by 4096 to bypass the errors that AOSP threw
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_FLASH_BLOCK_SIZE := 204800
