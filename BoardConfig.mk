@@ -17,7 +17,7 @@ LOCAL_PATH := $(call my-dir)
 TARGET_CPU_ABI := armeabi-v7a
 
 # If you are working on ICS uncomment this
-TARGET_ARCH_VARIANT := armv7-a
+#TARGET_ARCH_VARIANT := armv7-a
 
 TARGET_BOARD_PLATFORM_GPU := tegra
 TARGET_BOOTLOADER_BOARD_NAME := n1
