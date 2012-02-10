@@ -1,5 +1,2 @@
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/galaxyr.mk
-	
-#PRODUCT_MAKEFILES := \
-#    $(LOCAL_DIR)/I9103.mk
