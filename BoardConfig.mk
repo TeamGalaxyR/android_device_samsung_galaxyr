@@ -42,4 +42,8 @@ BOARD_FLASH_BLOCK_SIZE := 204800
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 527433728
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 212860928
 
+# Releasetools
+#TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxytab/releasetools/galaxytab_ota_from_target_files
+#TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxytab/releasetools/galaxytab_img_from_target_files
+
 BOARD_VOLD_MAX_PARTITIONS := 12
