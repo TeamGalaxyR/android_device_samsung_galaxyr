@@ -41,7 +41,12 @@ PRODUCT_PACKAGES := \
     lights.tegra \
     gralloc.tegra \
     #setup_fs \
-    dexpreopt
+    dexpreopt \
+    Phone \
+    Contacts \
+    SystemUI \
+    Framework-res \
+    Setting
 
 DISABLE_DEXPREOPT := false    
 
@@ -160,7 +165,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.stagefright.enable-http=true \
     media.stagefright.enable-rtsp=false \
     ro.tether.denied=false \
-    ro.flash.resolution=1080 
+    ro.flash.resolution=1080
+
+PRODUCT_LOCALES += hdpi
 
 # See comment at the top of this file. This is where the other
 # half of the device-specific product definition file takes care
