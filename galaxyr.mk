@@ -46,7 +46,36 @@ PRODUCT_PACKAGES := \
     Contacts \
     SystemUI \
     Framework-res \
-    Setting
+    Settings \
+    Message \
+    Browser \
+    AccountsAndSyncSettings \
+    Bluetooth \
+    Calculator \
+    Calendar \
+    Camera \
+    Email \
+    Launcher2 \
+    HTMLViewer \
+    Mms \
+    Music \
+    PackageInstaller \
+    Protips \
+    Provision \
+    SoundRecorder \
+    Stk \
+    Tag \
+    LatinIME \
+    OpenWnn \
+    PinyinIME \
+    ApplicationsProvider \
+    CalendarProvider \
+    ContactsProvider \
+    DownloadProvider \
+    GoogleContactsProvider \
+    MediaProvider \
+    TelephonyProvider \
+    UserDictionaryProvider
 
 DISABLE_DEXPREOPT := false    
 
