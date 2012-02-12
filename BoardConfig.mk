@@ -15,14 +15,19 @@
 LOCAL_PATH := $(call my-dir)
 
 TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
 
-# If you are working on ICS uncomment this
+# If you are working on ICS UNCOMMENT this
 #TARGET_ARCH_VARIANT := armv7-a
 
 TARGET_BOARD_PLATFORM_GPU := tegra
 TARGET_BOOTLOADER_BOARD_NAME := n1
 
+# If you are working on ICS COMMENT this
+TARGET_PREBUILT_KERNEL := device/samsung/galaxytab/kernel
+
 TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
 
 BOARD_HAVE_BLUETOOTH := true
 
@@ -35,6 +40,8 @@ BOARD_EGL_CFG := device/samsung/galaxyr/egl.cfg
 # BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x0d020000
 # BOARD_FLASH_BLOCK_SIZE := 131072
 
+TARGET_OTA_ASSERT_DEVICE := galaxyr,GT-I9103
+
 # I HAS CORRECTED TEH VALUES, except the flash block size
 
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -42,8 +49,10 @@ BOARD_FLASH_BLOCK_SIZE := 204800
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 527433728
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 212860928
 
-# Releasetools
+# Releasetools, don't touch yet
 #TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxytab/releasetools/galaxytab_ota_from_target_files
 #TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxytab/releasetools/galaxytab_img_from_target_files
+
+BOARD_HAS_SDCARD_INTERNAL := true
 
 BOARD_VOLD_MAX_PARTITIONS := 12
