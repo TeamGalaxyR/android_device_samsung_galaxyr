@@ -24,7 +24,7 @@ TARGET_BOARD_PLATFORM_GPU := tegra
 TARGET_BOOTLOADER_BOARD_NAME := n1
 
 # If you are working on ICS COMMENT this
-TARGET_PREBUILT_KERNEL := device/samsung/galaxytab/kernel
+TARGET_PREBUILT_KERNEL := device/samsung/galaxyr/kernel
 
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
