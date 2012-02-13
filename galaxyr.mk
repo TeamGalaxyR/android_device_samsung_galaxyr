@@ -45,7 +45,7 @@ PRODUCT_PACKAGES := \
     Phone \
     Contacts \
     SystemUI \
-    Framework-res \
+    framework-res \
     Settings \
     Message \
     Browser \
@@ -77,6 +77,7 @@ PRODUCT_PACKAGES := \
     TelephonyProvider \
     UserDictionaryProvider
 
+# Set true if you want .odex files
 DISABLE_DEXPREOPT := false    
 
 # Prebuilt libraries that are needed to build open-source libraries
