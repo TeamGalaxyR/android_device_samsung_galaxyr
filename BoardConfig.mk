@@ -46,9 +46,9 @@ BOARD_FLASH_BLOCK_SIZE := 102400
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 527433728
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 212860928
 
-# Releasetools, don't touch yet
-#TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxytab/releasetools/galaxytab_ota_from_target_files
-#TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxytab/releasetools/galaxytab_img_from_target_files
+# Releasetools, should be okay now
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./build/tools/releasetools/ota_from_target_files
+TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./build/tools/releasetools/img_from_target_files
 
 BOARD_HAS_SDCARD_INTERNAL := true
 
