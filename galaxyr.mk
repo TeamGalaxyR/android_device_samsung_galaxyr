@@ -5,16 +5,7 @@
 # product configuration (apps).
 #
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
-
 #DEVICE_PACKAGE_OVERLAYS := device/samsung/cooper/overlay
-
-# Discard inherited values and use our own instead.
-PRODUCT_NAME := galaxyr
-PRODUCT_DEVICE := galaxyr
-PRODUCT_MODEL := GT-I9103
 
 # proprietary side of the device
 #$(call inherit-product-if-exists, vendor/samsung/galaxyr/device-vendor.mk)
@@ -41,41 +32,7 @@ PRODUCT_PACKAGES := \
     lights.tegra \
     gralloc.tegra \
     #setup_fs \
-    dexpreopt \
-    Phone \
-    Contacts \
-    SystemUI \
-    framework-res \
-    Settings \
-    Message \
-    Browser \
-    AccountsAndSyncSettings \
-    Bluetooth \
-    Calculator \
-    Calendar \
-    Camera \
-    Email \
-    Launcher2 \
-    HTMLViewer \
-    Mms \
-    Music \
-    PackageInstaller \
-    Protips \
-    Provision \
-    SoundRecorder \
-    Stk \
-    Tag \
-    LatinIME \
-    OpenWnn \
-    PinyinIME \
-    ApplicationsProvider \
-    CalendarProvider \
-    ContactsProvider \
-    DownloadProvider \
-    GoogleContactsProvider \
-    MediaProvider \
-    TelephonyProvider \
-    UserDictionaryProvider
+    dexpreopt 
 
 # Set true if you want .odex files
 DISABLE_DEXPREOPT := false    
@@ -159,6 +116,15 @@ PRODUCT_COPY_FILES += \
     #device/samsung/galaxyr/prebuilt/modules/recovery/rfs_fat.ko:recovery/root/lib/modules/rfs_fat.ko \
     #device/samsung/galaxyr/prebuilt/modules/recovery/rfs_glue.ko:recovery/root/lib/modules/rfs_glue.ko \
     #device/samsung/galaxyr/prebuilt/modules/recovery/sec_param.ko:recovery/root/lib/modules/sec_param.ko
+
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
+
+# Discard inherited values and use our own instead.
+PRODUCT_NAME := galaxyr
+PRODUCT_DEVICE := galaxyr
+PRODUCT_MODEL := GT-I9103
 
 PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \
