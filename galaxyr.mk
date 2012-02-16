@@ -3,14 +3,37 @@
 # build for sapphire hardware. This cleanly combines a set of
 # device-specific aspects (drivers) with a device-agnostic
 # product configuration (apps).
-#
 
+<<<<<<< HEAD
+## Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
+
+=======
+>>>>>>> b742269d6488b2f560db6ca7986056b6924b061a
 #DEVICE_PACKAGE_OVERLAYS := device/samsung/cooper/overlay
 
 # proprietary side of the device
 #$(call inherit-product-if-exists, vendor/samsung/galaxyr/device-vendor.mk)
+<<<<<<< HEAD
 
-PRODUCT_PACKAGES := \
+# Discard inherited values and use our own instead.
+PRODUCT_NAME := galaxyr
+PRODUCT_DEVICE := galaxyr
+PRODUCT_MODEL := GT-I9103
+
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := device/samsung/galaxyr/kernel
+else
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
+=======
+>>>>>>> b742269d6488b2f560db6ca7986056b6924b061a
+
+PRODUCT_PACKAGES += \
     LiveWallpapers \
     LiveWallpapersPicker \
     VisualizationWallpapers \
@@ -32,13 +55,17 @@ PRODUCT_PACKAGES := \
     lights.tegra \
     gralloc.tegra \
     #setup_fs \
+<<<<<<< HEAD
+    dexpreopt
+=======
     dexpreopt 
+>>>>>>> b742269d6488b2f560db6ca7986056b6924b061a
 
 # Set true if you want .odex files
 DISABLE_DEXPREOPT := false    
 
 # Prebuilt libraries that are needed to build open-source libraries
-PRODUCT_COPY_FILES := \
+PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/libaudio.so:obj/lib/libaudio.so \
     device/samsung/galaxyr/proprietary/libaudiopolicy.so:obj/lib/libaudiopolicy.so \
     device/samsung/galaxyr/proprietary/libcamera.so:obj/lib/libcamera.so
