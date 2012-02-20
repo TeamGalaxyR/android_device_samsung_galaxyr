@@ -67,8 +67,11 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/vold.fstab:system/etc/vold.fstab \
     device/samsung/galaxyr/init.n1.rc:root/init.n1.rc \
     device/samsung/galaxyr/ueventd.n1.rc:root/ueventd.n1.rc \
-    device/samsung/galaxyr/init.n1.rc:init.n1.rc \
-    device/samsung/galaxyr/ueventd.n1.rc:ueventd.n1.rc \
+    device/samsung/galaxyr/ueventd.goldfish.rc:root/ueventd.goldfish.rc \
+    device/samsung/galaxyr/init.goldfish.rc:root/init.goldfish.rc \
+    device/samsung/galaxyr/fota.rc:root/fota.rc \
+#    #device/samsung/galaxyr/init.n1.rc:init.n1.rc \
+#    #device/samsung/galaxyr/ueventd.n1.rc:ueventd.n1.rc \
     #device/samsung/galaxyr/proprietary/AudioFilter.csv:system/etc/AudioFilter.csv \
     #device/samsung/galaxyr/proprietary/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
     device/samsung/galaxyr/proprietary/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
@@ -103,7 +106,8 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/nvmm_wmadec.axf:system/etc/firmware/nvmm_wmadec.axf \
     device/samsung/galaxyr/proprietary/nvmm_wmaprodec.axf:system/etc/firmware/nvmm_wmaprodec.axf \
     device/samsung/galaxyr/proprietary/nvrm_avp.bin:system/etc/firmware/nvrm_avp.bin \
-    device/samsung/galaxyr/proprietary/media_profiles.xml:system/etc/media_profiles.xml
+    device/samsung/galaxyr/proprietary/media_profiles.xml:system/etc/media_profiles.xml \
+    device/samsung/galaxyr/proprietary/rild:system/bin/rild
 
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \
@@ -147,7 +151,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=30 \
     ro.com.android.dataroaming=false \
-    ro.board.platform=tetra
+    ro.board.platform=tegra
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=240 
