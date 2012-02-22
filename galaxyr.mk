@@ -61,7 +61,7 @@ PRODUCT_COPY_FILES += \
 
 # All the blobs necessary for galaxyr
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxyr/proprietary/qwerty.kl:system/usr/keylayout/qwerty.kl \
+    #device/samsung/galaxyr/proprietary/qwerty.kl:system/usr/keylayout/qwerty.kl \
     device/samsung/galaxyr/proprietary/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl \
     device/samsung/galaxyr/proprietary/vold.fstab:system/etc/vold.fstab \
     device/samsung/galaxyr/init.n1.rc:root/init.n1.rc \
@@ -70,37 +70,7 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/init.goldfish.rc:root/init.goldfish.rc \
     device/samsung/galaxyr/fota.rc:root/fota.rc \
     device/samsung/galaxyr/proprietary/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    #device/samsung/galaxyr/proprietary/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    #device/samsung/galaxyr/proprietary/hostapd:system/bin/hostapd \
-    #device/samsung/galaxyr/proprietary/hostapd.conf:system/etc/wifi/hostapd.conf \
-    device/samsung/galaxyr/proprietary/libnvos.so:system/lib/libnvos.so \
-    device/samsung/galaxyr/proprietary/libnvomxilclient.so:system/lib/libnvomxilclient.so \
-    device/samsung/galaxyr/proprietary/bcm4330_aps.bin:system/etc/wifi/bcm4330_aps.bin \
-    device/samsung/galaxyr/proprietary/bcm4330_mfg.bin:system/etc/wifi/bcm4330_mfg.bin \
-    device/samsung/galaxyr/proprietary/bcm4330_sta.bin:system/etc/wifi/bcm4330_sta.bin \
-    device/samsung/galaxyr/proprietary/bcm4330_mfg.bin_b0:system/etc/wifi/bcm4330_mfg.bin_b0 \
-    device/samsung/galaxyr/proprietary/bcm4330_sta.bin_b0:system/etc/wifi/bcm4330_sta.bin_b0 \
-    #device/samsung/galaxyr/proprietary/otp.bin.z77:system/wifi/ath6k/AR6003/hw2.0/otp.bin.z77 \
-    device/samsung/galaxyr/proprietary/nvddk_audiofx_core.axf:system/etc/firmware/nvddk_audiofx_core.axf \
-    device/samsung/galaxyr/proprietary/nvddk_audiofx_transport.axf:system/etc/firmware/nvddk_audiofx_transport.axf \
-    device/samsung/galaxyr/proprietary/nvmm_aacdec.axf:system/etc/firmware/nvmm_aacdec.axf \
-    device/samsung/galaxyr/proprietary/nvmm_adtsdec.axf:system/etc/firmware/nvmm_adtsdec.axf \
-    device/samsung/galaxyr/proprietary/nvmm_audiomixer.axf:system/etc/firmware/nvmm_audiomixer.axf \
-    device/samsung/galaxyr/proprietary/nvmm_h264dec.axf:system/etc/firmware/nvmm_h264dec.axf \
-    device/samsung/galaxyr/proprietary/nvmm_jpegdec.axf:system/etc/firmware/nvmm_jpegdec.axf \
-    device/samsung/galaxyr/proprietary/nvmm_jpegenc.axf:system/etc/firmware/nvmm_jpegenc.axf \
-    device/samsung/galaxyr/proprietary/nvmm_manager.axf:system/etc/firmware/nvmm_manager.axf \
-    device/samsung/galaxyr/proprietary/nvmm_mp2dec.axf:system/etc/firmware/nvmm_mp2dec.axf \
-    device/samsung/galaxyr/proprietary/nvmm_mp3dec.axf:system/etc/firmware/nvmm_mp3dec.axf \
-    device/samsung/galaxyr/proprietary/nvmm_mpeg4dec.axf:system/etc/firmware/nvmm_mpeg4dec.axf \
-    device/samsung/galaxyr/proprietary/nvmm_reference.axf:system/etc/firmware/nvmm_reference.axf \
-    device/samsung/galaxyr/proprietary/nvmm_service.axf:system/etc/firmware/nvmm_service.axf \
-    device/samsung/galaxyr/proprietary/nvmm_sorensondec.axf:system/etc/firmware/nvmm_sorensondec.axf \
-    device/samsung/galaxyr/proprietary/nvmm_vc1dec.axf:system/etc/firmware/nvmm_vc1dec.axf \
-    device/samsung/galaxyr/proprietary/nvmm_wavdec.axf:system/etc/firmware/nvmm_wavdec.axf \
-    device/samsung/galaxyr/proprietary/nvmm_wmadec.axf:system/etc/firmware/nvmm_wmadec.axf \
-    device/samsung/galaxyr/proprietary/nvmm_wmaprodec.axf:system/etc/firmware/nvmm_wmaprodec.axf \
-    device/samsung/galaxyr/proprietary/nvrm_avp.bin:system/etc/firmware/nvrm_avp.bin \
+    device/samsung/galaxyr/proprietary/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     device/samsung/galaxyr/proprietary/media_profiles.xml:system/etc/media_profiles.xml \
     device/samsung/galaxyr/proprietary/rild:system/bin/rild
 
