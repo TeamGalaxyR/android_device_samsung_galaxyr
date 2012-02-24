@@ -57,7 +57,9 @@ DISABLE_DEXPREOPT := false
 # Prebuilt libraries that are needed to build open-source libraries
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/libcamera.so:obj/lib/libcamera.so \
-    device/samsung/galaxyr/proprietary/libcamera.so:system/lib/libcamera.so 
+    device/samsung/galaxyr/proprietary/libcamera.so:system/lib/libcamera.so \
+    device/samsung/galaxyr/proprietary/libaudio.so:obj/lib/libaudio.so \
+    device/samsung/galaxyr/proprietary/libaudio.so:system/lib/libaudio.so
 
 # All the blobs necessary for galaxyr
 PRODUCT_COPY_FILES += \
