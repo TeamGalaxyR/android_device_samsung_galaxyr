@@ -58,6 +58,7 @@ include $(CLEAR_VARS)
 
 # INIT-scripts
 PRODUCT_COPY_FILES += \
+    device/samsung/galaxyr/init.rc:root/init.rc \
     device/samsung/galaxyr/ueventd.rc:root/ueventd.rc \
     device/samsung/galaxyr/init.n1.rc:root/init.n1.rc \
     device/samsung/galaxyr/ueventd.n1.rc:root/ueventd.n1.rc
@@ -74,6 +75,16 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/libaudiopolicy.so:system/lib/libaudiopolicy.so
 
 include $(CLEAR_VARS)
+
+# RIL-stuff
+PRODUCT_COPY_FILES += \
+    device/samsung/galaxyr/proprietary/libril.so:system/lib/libril.so \
+    device/samsung/galaxyr/proprietary/libsec-ril.so:system/lib/libsec-ril.so \
+    device/samsung/galaxyr/proprietary/libsecril-client.so:system/lib/libsecril-client.so \
+    device/samsung/galaxyr/proprietary/apns-conf.xml:system/etc/apns-conf.xml \
+    device/samsung/galaxyr/proprietary/rild:system/bin/rild
+
+#include $(CLEAR_VARS)
 
 # All the blobs necessary for galaxyr
 PRODUCT_COPY_FILES += \
@@ -120,14 +131,22 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \
     ro.com.android.dateformat=dd-MM-yyyy \
-    ro.ril.hsxpa=3 \
-    ro.ril.gprsclass=10 
-    #ro.media.dec.jpeg.memcap=10000000
+    ro.ril.enable.3g.prefix=1 \
+    ro.ril.enable.a53=1 \
+    ro.ril.enable.dtm=1 \
+    ro.ril.enable.managed.roaming=1 \
+    ro.ril.gprsclass=12 \
+    ro.ril.hep=1 \
+    ro.ril.hsdpa.category=8 \
+    ro.ril.hsupa.category=5 \
+    ro.ril.hsxpa=2 \
+    rild.libpath=/system/lib/libsec-ril.so \
+    rild.libargs="-d /dev/ttys0"
 
 PRODUCT_PROPERTY_OVERRIDES += \
     mobiledata.interfaces=pdp0,wlan0,gprs,ppp0 \
     ro.telephony.ril_class=samsung \
-    wifi.interface=wlan0 \
+    wifi.interface=eth0 \
     wifi.supplicant_scan_interval=30 \
     ro.com.android.dataroaming=false \
     ro.board.platform=tegra
