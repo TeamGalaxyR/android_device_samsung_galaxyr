@@ -14,11 +14,17 @@
 
 LOCAL_PATH := $(call my-dir)
 
+
+# CPU
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-
+TARGET_CPU_SMP := true
+TARGET_ARCH_VARIANT := armv7-a
+TARGET_BOARD_PLATFORM := tegra
 TARGET_BOARD_PLATFORM_GPU := tegra
+ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_BOOTLOADER_BOARD_NAME := n1
+NEED_WORKAROUND_CORTEX_A9_745320 := true
 
 # Make sure that AOSP/CM7 sees this kernel
 TARGET_PREBUILT_KERNEL := device/samsung/galaxyr/kernel

@@ -54,7 +54,17 @@ PRODUCT_PACKAGES += \
 # Set true if you want .odex files
 DISABLE_DEXPREOPT := false    
 
-# Prebuilt libraries that are needed to build open-source libraries
+include $(CLEAR_VARS)
+
+# INIT-scripts
+PRODUCT_COPY_FILES += \
+    device/samsung/galaxyr/ueventd.rc:root/ueventd.rc \
+    device/samsung/galaxyr/init.n1.rc:root/init.n1.rc \
+    device/samsung/galaxyr/ueventd.n1.rc:root/ueventd.n1.rc
+
+include $(CLEAR_VARS)
+
+# Audio and Camera
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/libcamera.so:obj/lib/libcamera.so \
     device/samsung/galaxyr/proprietary/libcamera.so:system/lib/libcamera.so \
@@ -63,17 +73,13 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/libaudiopolicy.so:obj/lib/libaudiopolicy.so \
     device/samsung/galaxyr/proprietary/libaudiopolicy.so:system/lib/libaudiopolicy.so
 
+include $(CLEAR_VARS)
+
 # All the blobs necessary for galaxyr
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/qwerty.kl:system/usr/keylayout/qwerty.kl \
     device/samsung/galaxyr/proprietary/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl \
     device/samsung/galaxyr/proprietary/vold.fstab:system/etc/vold.fstab \
-    #device/samsung/galaxyr/init.rc:root/init.rc \
-    device/samsung/galaxyr/init.n1.rc:root/init.n1.rc \
-    device/samsung/galaxyr/ueventd.rc:root/ueventd.rc \
-    device/samsung/galaxyr/ueventd.n1.rc:root/ueventd.n1.rc \
-    device/samsung/galaxyr/init.n1.rc:init.n1.rc \
-    device/samsung/galaxyr/ueventd.n1.rc:ueventd.n1.rc \
     #device/samsung/galaxyr/proprietary/AudioFilter.csv:system/etc/AudioFilter.csv \
     #device/samsung/galaxyr/proprietary/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
     device/samsung/galaxyr/proprietary/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
@@ -124,7 +130,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=30 \
     ro.com.android.dataroaming=false \
-    ro.board.platform=tetra
+    ro.board.platform=tegra
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=240 
