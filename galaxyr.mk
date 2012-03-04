@@ -61,7 +61,8 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/init.rc:root/init.rc \
     device/samsung/galaxyr/ueventd.rc:root/ueventd.rc \
     device/samsung/galaxyr/init.n1.rc:root/init.n1.rc \
-    device/samsung/galaxyr/ueventd.n1.rc:root/ueventd.n1.rc
+    device/samsung/galaxyr/ueventd.n1.rc:root/ueventd.n1.rc \
+    device/samsung/galaxyr/proprietary/vold:system/bin
 
 include $(CLEAR_VARS)
 
@@ -74,7 +75,7 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/libaudiopolicy.so:obj/lib/libaudiopolicy.so \
     device/samsung/galaxyr/proprietary/libaudiopolicy.so:system/lib/libaudiopolicy.so
 
-include $(CLEAR_VARS)
+#include $(CLEAR_VARS)
 
 # RIL-stuff
 PRODUCT_COPY_FILES += \
@@ -83,6 +84,15 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/libsecril-client.so:system/lib/libsecril-client.so \
     device/samsung/galaxyr/proprietary/apns-conf.xml:system/etc/apns-conf.xml \
     device/samsung/galaxyr/proprietary/rild:system/bin/rild
+
+include $(CLEAR_VARS)
+
+# RIL-stuff
+PRODUCT_COPY_FILES += \
+    device/samsung/galaxyr/prebuilt/dhd.ko:root/lib/modules/dhd.ko \
+    device/samsung/galaxyr/prebuilt/bthid.ko:root/lib/modules/bthid.ko \
+    device/samsung/galaxyr/prebuilt/scsi_wait_scan.ko:root/lib/modules/scsi_wait_scan.ko \
+    device/samsung/galaxyr/prebuilt/Si4709_driver.ko:root/lib/modules/Si4709_driver.ko
 
 #include $(CLEAR_VARS)
 
