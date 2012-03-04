@@ -104,6 +104,7 @@ PRODUCT_COPY_FILES += \
     #device/samsung/galaxyr/proprietary/AudioFilter.csv:system/etc/AudioFilter.csv \
     #device/samsung/galaxyr/proprietary/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
     device/samsung/galaxyr/proprietary/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/samsung/galaxyr/proprietary/wifi.conf:system/etc/wifi/wifi.conf \
     #device/samsung/galaxyr/proprietary/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     #device/samsung/galaxyr/proprietary/hostapd:system/bin/hostapd \
     #device/samsung/galaxyr/proprietary/hostapd.conf:system/etc/wifi/hostapd.conf \
