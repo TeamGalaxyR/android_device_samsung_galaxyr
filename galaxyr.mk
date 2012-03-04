@@ -114,6 +114,17 @@ PRODUCT_COPY_FILES += \
     
 #include $(CLEAR_VARS)
 
+PRODUCT_COPY_FILES += \
+    device/samsung/galaxyr/proprietary/vold:system/bin/vold \
+    device/samsung/galaxyr/proprietary/vold.fstab:system/etc/vold.fstab \
+    device/samsung/galaxyr/proprietary/libext2fs.so:system/lib/liext2fs.so \
+    device/samsung/galaxyr/proprietary/libext2_blkid.so:system/lib/liext2_blkid.so \
+    device/samsung/galaxyr/proprietary/libext2_com_err.so:system/lib/liext2_com_err.so \
+    device/samsung/galaxyr/proprietary/libext2_e2p.so:system/lib/liext2_e2p.so \
+    device/samsung/galaxyr/proprietary/libext2_uuid.so:system/lib/liext2_uuid.so
+
+#include $(CLEAR_VARS)
+
 # All the blobs necessary for galaxyr
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/qwerty.kl:system/usr/keylayout/qwerty.kl \
