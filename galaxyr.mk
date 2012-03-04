@@ -61,8 +61,7 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/init.rc:root/init.rc \
     device/samsung/galaxyr/ueventd.rc:root/ueventd.rc \
     device/samsung/galaxyr/init.n1.rc:root/init.n1.rc \
-    device/samsung/galaxyr/ueventd.n1.rc:root/ueventd.n1.rc \
-    device/samsung/galaxyr/proprietary/vold:system/bin
+    device/samsung/galaxyr/ueventd.n1.rc:root/ueventd.n1.rc
 
 include $(CLEAR_VARS)
 
@@ -87,7 +86,7 @@ PRODUCT_COPY_FILES += \
 
 include $(CLEAR_VARS)
 
-# RIL-stuff
+# Prebuilt modules
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/prebuilt/dhd.ko:root/lib/modules/dhd.ko \
     device/samsung/galaxyr/prebuilt/bthid.ko:root/lib/modules/bthid.ko \
@@ -96,15 +95,32 @@ PRODUCT_COPY_FILES += \
 
 #include $(CLEAR_VARS)
 
+# WIFI-stuff
+PRODUCT_COPY_FILES += \
+    device/samsung/galaxyr/proprietary/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/samsung/galaxyr/proprietary/wifi.conf:system/etc/wifi/wifi.conf \
+    device/samsung/galaxyr/proprietary/wlandutservice:system/bin/wlandutservice \
+    device/samsung/galaxyr/proprietary/macloader:system/bin/macloader \
+    device/samsung/galaxyr/proprietary/mfgloader:system/bin/mfgloader \
+    device/samsung/galaxyr/proprietary/wl:system/etc/wifi/wl \
+    device/samsung/galaxyr/proprietary/iwmulticall:system/etc/wifi/iwmulticall \
+    device/samsung/galaxyr/proprietary/nvram_mfg.txt:system/etc/wifi/nvram_mfg.txt \
+    device/samsung/galaxyr/proprietary/nvram_mfg.txt_b0:system/etc/wifi/nvram_mfg.txt_b0 \
+    device/samsung/galaxyr/proprietary/nvram_mfg.txt_murata:system/etc/wifi/nvram_mfg.txt_murata \
+    device/samsung/galaxyr/proprietary/nvram_net.txt:system/etc/wifi/nvram_net.txt \
+    device/samsung/galaxyr/proprietary/nvram_net.txt_b0:system/etc/wifi/nvram_net.txt_b0 \
+    device/samsung/galaxyr/proprietary/nvram_net.txt_murata:system/etc/wifi/nvram_net.txt_murata
+    
+#include $(CLEAR_VARS)
+
 # All the blobs necessary for galaxyr
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/qwerty.kl:system/usr/keylayout/qwerty.kl \
     device/samsung/galaxyr/proprietary/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl \
     device/samsung/galaxyr/proprietary/vold.fstab:system/etc/vold.fstab \
+    device/samsung/galaxyr/proprietary/vold:system/bin/vold \
     #device/samsung/galaxyr/proprietary/AudioFilter.csv:system/etc/AudioFilter.csv \
     #device/samsung/galaxyr/proprietary/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
-    device/samsung/galaxyr/proprietary/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/samsung/galaxyr/proprietary/wifi.conf:system/etc/wifi/wifi.conf \
     #device/samsung/galaxyr/proprietary/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     #device/samsung/galaxyr/proprietary/hostapd:system/bin/hostapd \
     #device/samsung/galaxyr/proprietary/hostapd.conf:system/etc/wifi/hostapd.conf \
