@@ -98,6 +98,7 @@ PRODUCT_COPY_FILES += \
 # WIFI-stuff
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/samsung/galaxyr/proprietary/wpa_supplicant:system/bin/wpa_supplicant \
     device/samsung/galaxyr/proprietary/wifi.conf:system/etc/wifi/wifi.conf \
     device/samsung/galaxyr/proprietary/wlandutservice:system/bin/wlandutservice \
     device/samsung/galaxyr/proprietary/macloader:system/bin/macloader \
