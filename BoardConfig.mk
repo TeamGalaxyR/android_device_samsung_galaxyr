@@ -58,14 +58,18 @@ BOARD_FLASH_BLOCK_SIZE := 2048
 
 TARGET_USERIMAGES_USE_EXT4 := true
 
+BOARD_VENDOR_USE_AKMD := akm8973
+
 # Wifi related defines
-WPA_SUPPLICANT_VERSION := VER_0_6_X
+WPA_BUILD_SUPPLICANT        := true
+WPA_SUPPLICANT_VERSION      := VER_0_6_X
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-BOARD_WLAN_DEVICE := bcm4330
+BOARD_WLAN_DEVICE           := bcm4330
 WIFI_DRIVER_MODULE_PATH     := "/lib/modules/dhd.ko"
 WIFI_DRIVER_FW_STA_PATH     := "/system/etc/wifi/bcm4330_sta.bin"
 WIFI_DRIVER_FW_AP_PATH      := "/system/etc/wifi/bcm4330_aps.bin"
 WIFI_DRIVER_FW_MFG_PATH      := "/system/etc/wifi/bcm4330_mfg.bin"
+#WIFI_FIRMWARE_LOADER        := "wlandutservice"
 WIFI_DRIVER_MODULE_NAME     :=  "dhd"
 WIFI_DRIVER_MODULE_ARG      :=  "firmware_path=/system/etc/wifi/bcm4330_sta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
 

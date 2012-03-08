@@ -68,11 +68,11 @@ include $(CLEAR_VARS)
 # Audio and Camera
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/libcamera.so:obj/lib/libcamera.so \
-    device/samsung/galaxyr/proprietary/libcamera.so:system/lib/libcamera.so \
-    device/samsung/galaxyr/proprietary/libaudio.so:obj/lib/libaudio.so \
-    device/samsung/galaxyr/proprietary/libaudio.so:system/lib/libaudio.so \
-    device/samsung/galaxyr/proprietary/libaudiopolicy.so:obj/lib/libaudiopolicy.so \
-    device/samsung/galaxyr/proprietary/libaudiopolicy.so:system/lib/libaudiopolicy.so
+    device/samsung/galaxyr/proprietary/libcamera.so:system/lib/libcamera.so
+    #device/samsung/galaxyr/proprietary/libaudio.so:obj/lib/libaudio.so \
+    #device/samsung/galaxyr/proprietary/libaudio.so:system/lib/libaudio.so \
+    #device/samsung/galaxyr/proprietary/libaudiopolicy.so:obj/lib/libaudiopolicy.so \
+    #device/samsung/galaxyr/proprietary/libaudiopolicy.so:system/lib/libaudiopolicy.so
 
 #include $(CLEAR_VARS)
 
@@ -98,7 +98,7 @@ PRODUCT_COPY_FILES += \
 # WIFI-stuff
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/samsung/galaxyr/proprietary/wpa_supplicant:system/bin/wpa_supplicant \
+    #device/samsung/galaxyr/proprietary/wpa_supplicant:system/bin/wpa_supplicant \
     device/samsung/galaxyr/proprietary/wifi.conf:system/etc/wifi/wifi.conf \
     device/samsung/galaxyr/proprietary/wlandutservice:system/bin/wlandutservice \
     device/samsung/galaxyr/proprietary/macloader:system/bin/macloader \
@@ -117,11 +117,19 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/vold:system/bin/vold \
     device/samsung/galaxyr/proprietary/vold.fstab:system/etc/vold.fstab \
-    device/samsung/galaxyr/proprietary/libext2fs.so:system/lib/liext2fs.so \
-    device/samsung/galaxyr/proprietary/libext2_blkid.so:system/lib/liext2_blkid.so \
-    device/samsung/galaxyr/proprietary/libext2_com_err.so:system/lib/liext2_com_err.so \
-    device/samsung/galaxyr/proprietary/libext2_e2p.so:system/lib/liext2_e2p.so \
-    device/samsung/galaxyr/proprietary/libext2_uuid.so:system/lib/liext2_uuid.so
+    device/samsung/galaxyr/proprietary/libext2fs.so:system/lib/libext2fs.so \
+    device/samsung/galaxyr/proprietary/libext2_blkid.so:system/lib/libext2_blkid.so \
+    device/samsung/galaxyr/proprietary/libext2_com_err.so:system/lib/libext2_com_err.so \
+    device/samsung/galaxyr/proprietary/libext2_e2p.so:system/lib/libext2_e2p.so \
+    device/samsung/galaxyr/proprietary/libext2_uuid.so:system/lib/libext2_uuid.so
+
+#include $(CLEAR_VARS)
+
+PRODUCT_COPY_FILES += \
+    device/samsung/galaxyr/proprietary/immvibed_n1:system/bin/immvibed_n1 \
+    device/samsung/galaxyr/proprietary/drexe:system/bin/drexe \
+    device/samsung/galaxyr/proprietary/npsmobex:system/bin/npsmobex \
+    device/samsung/galaxyr/proprietary/libsisodrm.so:system/lib/libsisodrm.so
 
 #include $(CLEAR_VARS)
 
@@ -129,8 +137,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/qwerty.kl:system/usr/keylayout/qwerty.kl \
     device/samsung/galaxyr/proprietary/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl \
-    device/samsung/galaxyr/proprietary/vold.fstab:system/etc/vold.fstab \
-    device/samsung/galaxyr/proprietary/vold:system/bin/vold \
     #device/samsung/galaxyr/proprietary/AudioFilter.csv:system/etc/AudioFilter.csv \
     #device/samsung/galaxyr/proprietary/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
     #device/samsung/galaxyr/proprietary/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
