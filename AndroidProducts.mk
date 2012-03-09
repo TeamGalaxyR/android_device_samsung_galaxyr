@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/galaxyr.mk
+    $(LOCAL_DIR)/full_galaxyr.mk
