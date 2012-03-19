@@ -19,7 +19,7 @@ PRODUCT_DEVICE := galaxyr
 PRODUCT_MODEL := GT-I9103
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := device/samsung/galaxyr/kernel
+	LOCAL_KERNEL := device/samsung/galaxyr/kernel_ardatdat
 else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
@@ -65,23 +65,17 @@ PRODUCT_COPY_FILES += \
 
 include $(CLEAR_VARS)
 
-# Audio and Camera
+# Camera
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/libcamera.so:obj/lib/libcamera.so \
     device/samsung/galaxyr/proprietary/libcamera.so:system/lib/libcamera.so
-    #device/samsung/galaxyr/proprietary/libaudio.so:obj/lib/libaudio.so \
-    #device/samsung/galaxyr/proprietary/libaudio.so:system/lib/libaudio.so \
-    #device/samsung/galaxyr/proprietary/libaudiopolicy.so:obj/lib/libaudiopolicy.so \
-    #device/samsung/galaxyr/proprietary/libaudiopolicy.so:system/lib/libaudiopolicy.so
 
 #include $(CLEAR_VARS)
 
 # RIL-stuff
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxyr/proprietary/libril.so:system/lib/libril.so \
     device/samsung/galaxyr/proprietary/libsec-ril.so:system/lib/libsec-ril.so \
     device/samsung/galaxyr/proprietary/libsecril-client.so:system/lib/libsecril-client.so \
-    device/samsung/galaxyr/proprietary/apns-conf.xml:system/etc/apns-conf.xml \
     device/samsung/galaxyr/proprietary/rild:system/bin/rild
 
 include $(CLEAR_VARS)
@@ -93,12 +87,12 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/prebuilt/scsi_wait_scan.ko:root/lib/modules/scsi_wait_scan.ko \
     device/samsung/galaxyr/prebuilt/Si4709_driver.ko:root/lib/modules/Si4709_driver.ko
 
-#include $(CLEAR_VARS)
+include $(CLEAR_VARS)
 
 # WIFI-stuff
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    #device/samsung/galaxyr/proprietary/wpa_supplicant:system/bin/wpa_supplicant \
+    device/samsung/galaxyr/proprietary/wpa_supplicant:system/bin/wpa_supplicant \
     device/samsung/galaxyr/proprietary/wifi.conf:system/etc/wifi/wifi.conf \
     device/samsung/galaxyr/proprietary/wlandutservice:system/bin/wlandutservice \
     device/samsung/galaxyr/proprietary/macloader:system/bin/macloader \
@@ -112,8 +106,9 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/nvram_net.txt_b0:system/etc/wifi/nvram_net.txt_b0 \
     device/samsung/galaxyr/proprietary/nvram_net.txt_murata:system/etc/wifi/nvram_net.txt_murata
     
-#include $(CLEAR_VARS)
+include $(CLEAR_VARS)
 
+# VOLD
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/vold:system/bin/vold \
     device/samsung/galaxyr/proprietary/vold.fstab:system/etc/vold.fstab \
@@ -123,7 +118,7 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/libext2_e2p.so:system/lib/libext2_e2p.so \
     device/samsung/galaxyr/proprietary/libext2_uuid.so:system/lib/libext2_uuid.so
 
-#include $(CLEAR_VARS)
+include $(CLEAR_VARS)
 
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/immvibed_n1:system/bin/immvibed_n1 \
@@ -131,17 +126,27 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/npsmobex:system/bin/npsmobex \
     device/samsung/galaxyr/proprietary/libsisodrm.so:system/lib/libsisodrm.so
 
-#include $(CLEAR_VARS)
+include $(CLEAR_VARS)
 
-# All the blobs necessary for galaxyr
+# Keychars
 PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/qwerty.kl:system/usr/keylayout/qwerty.kl \
     device/samsung/galaxyr/proprietary/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl \
-    #device/samsung/galaxyr/proprietary/AudioFilter.csv:system/etc/AudioFilter.csv \
-    #device/samsung/galaxyr/proprietary/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
-    #device/samsung/galaxyr/proprietary/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    #device/samsung/galaxyr/proprietary/hostapd:system/bin/hostapd \
-    #device/samsung/galaxyr/proprietary/hostapd.conf:system/etc/wifi/hostapd.conf \
+    device/samsung/galaxyr/proprietary/sec_key.kl:system/usr/keylayout/sec_key.kl \
+    device/samsung/galaxyr/proprietary/qwerty.kcm.bin:system/usr/keychars/qwerty.kcm.bin \
+    device/samsung/galaxyr/proprietary/qwerty2.kcm.bin:system/usr/keychars/qwerty2.kcm.bin \
+    device/samsung/galaxyr/proprietary/sec_key.kcm.bin:system/usr/keychars/sec_key.kcm.bin \
+    device/samsung/galaxyr/proprietary/sec_touchscreen.kcm.bin:system/usr/keychars/sec_touchscreen.kcm.bin    
+
+include $(CLEAR_VARS)
+
+# All the blobs necessary for galaxyr
+PRODUCT_COPY_FILES += \
+    device/samsung/galaxyr/prebuilt/su:system/xbin/su \
+    device/samsung/galaxyr/prebuilt/su:system/bin/su \
+    device/samsung/galaxyr/prebuilt/LatinIME.apk:system/app/LatinIME.apk \
+    device/samsung/galaxyr/prebuilt/Superuser.apk:system/app/Superuser.apk \
+    device/samsung/galaxyr/apns-conf.xml:system/etc/apns-conf.xml \
     device/samsung/galaxyr/proprietary/media_profiles.xml:system/etc/media_profiles.xml
 
 # Install the features available on this device.

@@ -218,7 +218,7 @@ chmod 0666 /dev/usb_mtp_gadget
     chown system system /sys/class/sec/sec_s5k6aafx/camtype
 
 # Vibrator
-    chmod 0666 /dev/tspdrv
+#    chmod 0666 /dev/tspdrv
 
 # OTG Test
     chown system radio /sys/class/host_notify/usb_otg/booster

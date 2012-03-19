@@ -254,7 +254,7 @@
   <apn carrier="Halebop MMS" mcc="240" mnc="01" apn="mms.telia.se" user="mms" password="telia" mmsc="http://mmss/" mmsproxy="193.209.134.132" mmsport="8080" type="mms" />
   <apn carrier="Telia SE MMS" mcc="240" mnc="01" apn="mms.telia.se" user="mms" server="" password="telia" mmsc="http://mmss/" mmsproxy="193.209.134.132" mmsport="80" type="mms"/> 
   <apn carrier="Telia SE" mcc="240" mnc="01" apn="online.telia.se" user="*" type="default,supl" />
-  <apn carrier="3 SE" mcc="240" mnc="02" apn="data.tre.se" type="default,supl,mms" />
+  <apn carrier="3 SE" mcc="240" mnc="02" apn="data.tre.se" mmsc="http://mms.tre.se" mmsproxy="172.016.053.011" mmsport="8799" authenticationtype="PAP" type="default,supl,mms" />
   <apn carrier="3 SE MMS" mcc="240" mnc="02" apn="data.tre.se" mmsc="http://mms.tre.se" mmsproxy="mmsproxy.tre.se" mmsport="8799" type="mms" />
   <apn carrier="Telenor Mobilsurf" mcc="240" mnc="04" apn="services.telenor.se" proxy="172.30.253.241" port="8799" type="default,supl" />
   <apn carrier="Telenor MMS" mcc="240" mnc="04" apn="services.telenor.se" mmsc="http://mms" mmsproxy="172.30.253.241" mmsport="8799" type="mms" />

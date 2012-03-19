@@ -26,8 +26,10 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_BOOTLOADER_BOARD_NAME := n1
 NEED_WORKAROUND_CORTEX_A9_745320 := true
 
+BOARD_USES_LIBSECRIL_STUB := true
+
 # Make sure that AOSP/CM7 sees this kernel
-TARGET_PREBUILT_KERNEL := device/samsung/galaxyr/kernel
+TARGET_PREBUILT_KERNEL := device/samsung/galaxyr/kernel_ardatdat
 
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
@@ -39,6 +41,11 @@ BOARD_EGL_CFG := device/samsung/galaxyr/egl.cfg
 
 # Mobile data
 BOARD_MOBILEDATA_INTERFACE_NAME = "smd0"
+
+# FM Radio
+#BOARD_HAVE_FM_RADIO := true
+#BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
+BOARD_FM_DEVICE := si4709
 
 # BOARD_BOOTIMAGE_PARTITION_SIZE     := 0x00480000
 # BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00780000
@@ -60,9 +67,14 @@ TARGET_USERIMAGES_USE_EXT4 := true
 
 BOARD_VENDOR_USE_AKMD := akm8973
 
+#BOARD_HAS_VIBRATOR_IMPLEMENTATION := device/samsung/galaxyr/vibrator/tspdrv.c
+
+#TARGET_USES_OLD_LIBSENSORS_HAL := true
+
 # Wifi related defines
 WPA_BUILD_SUPPLICANT        := true
 WPA_SUPPLICANT_VERSION      := VER_0_6_X
+#BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 BOARD_WLAN_DEVICE           := bcm4330
 WIFI_DRIVER_MODULE_PATH     := "/lib/modules/dhd.ko"
