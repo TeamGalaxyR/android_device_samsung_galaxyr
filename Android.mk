@@ -13,10 +13,6 @@
 # limitations under the License.
 
 LOCAL_PATH := $(call my-dir)
-include $(LOCAL_PATH)/proprietary/proprietary.mk
-
-LOCAL_PATH := $(call my-dir)
-include device/samsung/galaxyr/libaudio/libaudio.mk
-
-LOCAL_PATH := $(call my-dir)
 include $(call all-makefiles-under,$(LOCAL_PATH))
+
+include $(all-subdir-makefiles)

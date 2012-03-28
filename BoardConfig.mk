@@ -29,7 +29,7 @@ NEED_WORKAROUND_CORTEX_A9_745320 := true
 BOARD_USES_LIBSECRIL_STUB := true
 
 # Make sure that AOSP/CM7 sees this kernel
-TARGET_PREBUILT_KERNEL := device/samsung/galaxyr/kernel_ardatdat
+TARGET_PREBUILT_KERNEL := device/samsung/galaxyr/kernel
 
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true

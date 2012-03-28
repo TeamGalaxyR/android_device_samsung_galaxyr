@@ -19,7 +19,7 @@ PRODUCT_DEVICE := galaxyr
 PRODUCT_MODEL := GT-I9103
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := device/samsung/galaxyr/kernel_ardatdat
+	LOCAL_KERNEL := device/samsung/galaxyr/kernel
 else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
@@ -33,23 +33,24 @@ PRODUCT_PACKAGES += \
     VisualizationWallpapers \
     MagicSmokeWallpapers \
     VisualizationWallpapers \
-    librs_jni \
     Gallery3d \
     SpareParts \
     Development \
     Term \
     libOmxCore \
     libOmxVidEnc \
-    FM \
-    Torch \
-    #make_ext4fs \
-    brcm_patchram_plus \
     sec_touchscreen.kcm \
-    copybit.tegra \
-    lights.tegra \
-    gralloc.tegra \
-    #setup_fs \
     dexpreopt
+
+include $(CLEAR_VARS)
+
+PRODUCT_PACKAGES += \
+    sensors.n1 \
+    sensors.tegra \
+    lights.tegra \
+    gps.n1 \
+    gralloc.tegra \
+    overlay.tegra
 
 # Set true if you want .odex files
 DISABLE_DEXPREOPT := false    
@@ -70,7 +71,7 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/libcamera.so:obj/lib/libcamera.so \
     device/samsung/galaxyr/proprietary/libcamera.so:system/lib/libcamera.so
 
-#include $(CLEAR_VARS)
+include $(CLEAR_VARS)
 
 # RIL-stuff
 PRODUCT_COPY_FILES += \
@@ -105,7 +106,22 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/nvram_net.txt:system/etc/wifi/nvram_net.txt \
     device/samsung/galaxyr/proprietary/nvram_net.txt_b0:system/etc/wifi/nvram_net.txt_b0 \
     device/samsung/galaxyr/proprietary/nvram_net.txt_murata:system/etc/wifi/nvram_net.txt_murata
-    
+
+include $(CLEAR_VARS)
+
+# GPS-stuff
+PRODUCT_COPY_FILES += \
+    device/samsung/galaxyr/proprietary/sirfgps.conf:system/etc/sirfgps.conf \
+    device/samsung/galaxyr/proprietary/gps.conf:system/etc/gps.conf
+
+include $(CLEAR_VARS)
+
+# Sensors
+PRODUCT_COPY_FILES += \
+    device/samsung/galaxyr/proprietary/libmpl.so:system/lib/libmpl.so \
+    device/samsung/galaxyr/proprietary/libmllite.so:system/lib/libmllite.so \
+    device/samsung/galaxyr/proprietary/libmlplatform.so:system/lib/libmlplatform.so   
+
 include $(CLEAR_VARS)
 
 # VOLD
@@ -152,11 +168,22 @@ PRODUCT_COPY_FILES += \
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/base/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
     frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/base/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/base/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    frameworks/base/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
+    frameworks/base/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+    frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/base/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
+    frameworks/base/data/etc/android.hardware.touchscreen.xml:system/etc/permissions/android.hardware.touchscreen.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
