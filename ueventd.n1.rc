@@ -25,6 +25,7 @@
 
 # for AKM8975
 /dev/akm8975		0660	system	system
+/dev/accelerometer 	0660 	system 	system
 
 # for usb printer
 /dev/usb/lp*    0660    system  usb

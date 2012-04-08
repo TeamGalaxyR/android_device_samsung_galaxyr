@@ -118,9 +118,10 @@ include $(CLEAR_VARS)
 
 # Sensors
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxyr/proprietary/libmpl.so:system/lib/libmpl.so \
-    device/samsung/galaxyr/proprietary/libmllite.so:system/lib/libmllite.so \
-    device/samsung/galaxyr/proprietary/libmlplatform.so:system/lib/libmlplatform.so   
+    device/samsung/galaxyr/proprietary/libakm.so:system/lib/libakm.so   
+#    device/samsung/galaxyr/proprietary/libmpl.so:system/lib/libmpl.so \
+#    device/samsung/galaxyr/proprietary/libmllite.so:system/lib/libmllite.so \
+#    device/samsung/galaxyr/proprietary/libmlplatform.so:system/lib/libmlplatform.so   
 
 include $(CLEAR_VARS)
 
@@ -152,7 +153,10 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxyr/proprietary/qwerty.kcm.bin:system/usr/keychars/qwerty.kcm.bin \
     device/samsung/galaxyr/proprietary/qwerty2.kcm.bin:system/usr/keychars/qwerty2.kcm.bin \
     device/samsung/galaxyr/proprietary/sec_key.kcm.bin:system/usr/keychars/sec_key.kcm.bin \
-    device/samsung/galaxyr/proprietary/sec_touchscreen.kcm.bin:system/usr/keychars/sec_touchscreen.kcm.bin    
+    device/samsung/galaxyr/proprietary/sec_touchscreen.kcm:system/usr/keychars/sec_touchscreen.kcm \
+    device/samsung/galaxyr/proprietary/sec_touchscreen.kcm.bin:system/usr/keychars/sec_touchscreen.kcm.bin \
+    device/samsung/galaxyr/proprietary/sec_jack.kcm.bin:system/usr/keychars/sec_jack.kcm.bin \
+    device/samsung/galaxyr/proprietary/sec_jack.kl:system/usr/keychars/sec_jack.kl
 
 include $(CLEAR_VARS)
 
